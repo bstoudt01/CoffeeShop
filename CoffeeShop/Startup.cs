@@ -28,6 +28,8 @@ namespace CoffeeShop
         {
             services.AddControllers();
             services.AddTransient<IBeanVarietyRepository, BeanVarietyRepository>();
+            services.AddTransient<ICoffeeRepository, CoffeeRepository>();
+
 
         }
 

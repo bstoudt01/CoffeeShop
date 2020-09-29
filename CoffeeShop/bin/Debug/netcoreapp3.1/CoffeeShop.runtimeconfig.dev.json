@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Island Life\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Island Life\\.nuget\\packages"
+    ]
+  }
+}

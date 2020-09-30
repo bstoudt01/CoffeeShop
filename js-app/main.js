@@ -1,14 +1,58 @@
 import Render from "./beanVarietyList.js";
-import BeanVariety from "./createBeanVariety.js"
+import BeanVarietyForm from "./beanVarietyFormComponent.js";
+import CreateBeanVariety from "./createBeanVariety.js";
+import newBeanVarietyObject from "./createBeanVariety.js";
 
-const url = "https://localhost:5001/api/beanvariety/";
+//BEAN VARIETY Route
+const beanVarietyUrl = "https://localhost:5001/api/beanvariety/";
 
-const button = document.querySelector("#run-button");
-button.addEventListener("click", () => {
+// Event Listener on Run Button 
+//Get Bean Variety Array, Convert and Render each item in array to Dom
+const listBeanButton = document.querySelector("#listBean-button");
+listBeanButton.addEventListener("click", () => {
     getAllBeanVarieties()
         .then().then(beanVarieties => Render.showBeanVarieties(beanVarieties));
 });
 
+// API Request for data from bean Variety Route
 function getAllBeanVarieties() {
-    return fetch(url).then(resp => resp.json());
+    return fetch(beanVarietyUrl).then(resp => resp.json());
 }
+
+
+//Insert Bean Variety Form
+document.querySelector(".beanForm").innerHTML = BeanVarietyForm.beanVarietyForm();
+
+// Event Listener on Add Bean Button for Bean Variety Form
+//Post Bean Variety Object, Convert Then Re-Render bean array to Dom
+const addBeanButton = document.querySelector("#AddBeanVariety-button");
+addBeanButton.addEventListener("click", () => {
+    const beanName = document.getElementById("beanVariety.name").value
+    const beanRegion = document.getElementById("beanVariety.region").value
+    const beanNotes = document.getElementById("beanVariety.notes").value
+
+    if (
+        (beanName === "") ||
+        (beanRegion === "") ||
+        (beanNotes === "")
+
+    ) { alert("you forgot something") }
+    else {
+        // API Request for data from bean Variety Route
+
+
+        const item = newBeanVarietyObject(beanName, beanRegion, beanNotes)
+
+
+        fetch(beanVarietyUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(item)
+        })
+            .catch(error => console.error('Unable to add item.', error));
+
+    }
+});

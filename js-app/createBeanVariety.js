@@ -1,7 +1,8 @@
-const newBeanVarietyObject = (beanName, beanRegion) => {
+const newBeanVarietyObject = (beanName, beanRegion, baenNotes) => {
     return {
         name: beanName,
-        Region: beanRegion,
+        region: beanRegion,
+        notes: baenNotes,
     };
 };
 

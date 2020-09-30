@@ -11,10 +11,10 @@ const Render = {
     // then the entry log area in the html is targested and we inject each html converted object into the entry Log area of the dom.
     showBeanVarieties(beanObjectsArray) {
         console.log(beanObjectsArray)
-        document.querySelector(".beanLog").innerHTML = ""
+        document.querySelector(".beanList").innerHTML = ""
         for (const beanObject of beanObjectsArray) {
             const beanHTMLRepresentation = HTMLComponent.beanVarietyConverter(beanObject)
-            const beanArticleElement = document.querySelector(".beanLog")
+            const beanArticleElement = document.querySelector(".beanList")
             beanArticleElement.innerHTML += beanHTMLRepresentation
         }
     }

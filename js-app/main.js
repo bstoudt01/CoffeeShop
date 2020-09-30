@@ -26,33 +26,28 @@ document.querySelector(".beanForm").innerHTML = BeanVarietyForm.beanVarietyForm(
 // Event Listener on Add Bean Button for Bean Variety Form
 //Post Bean Variety Object, Convert Then Re-Render bean array to Dom
 const addBeanButton = document.querySelector("#AddBeanVariety-button");
-addBeanButton.addEventListener("click", () => {
+addBeanButton.addEventListener("click", (event) => {
     const beanName = document.getElementById("beanVariety.name").value
     const beanRegion = document.getElementById("beanVariety.region").value
     const beanNotes = document.getElementById("beanVariety.notes").value
 
     if (
         (beanName === "") ||
-        (beanRegion === "") ||
-        (beanNotes === "")
+        (beanRegion === "")
 
     ) { alert("you forgot something") }
     else {
         // API Request for data from bean Variety Route
-
-
-        const item = newBeanVarietyObject(beanName, beanRegion, beanNotes)
-
+        const newBean = newBeanVarietyObject(beanName, beanRegion, beanNotes)
 
         fetch(beanVarietyUrl, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(item)
+            body: JSON.stringify(newBean)
         })
-            .catch(error => console.error('Unable to add item.', error));
+
 
     }
 });
